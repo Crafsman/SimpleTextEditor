@@ -65,9 +65,9 @@ namespace SimpleTextEditor
             {
                 TextEditorForm textEditor;
                 if (userInfo.userType.ToLower() == "edit")
-                    textEditor = new TextEditorForm(true);
+                    textEditor = new TextEditorForm(true, this);
                 else
-                    textEditor = new TextEditorForm(false);
+                    textEditor = new TextEditorForm(false, this);
 
                 textEditor.StartPosition = FormStartPosition.CenterScreen;
                 textEditor.Show();

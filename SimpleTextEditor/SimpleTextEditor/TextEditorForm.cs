@@ -13,12 +13,19 @@ namespace SimpleTextEditor
     public partial class TextEditorForm : Form
     {
         bool isEditable;
+        private LoginForm loginForm;
 
-        public TextEditorForm(bool editable)
+        public TextEditorForm(bool editable, LoginForm form)
         {
-            isEditable = editable;
-
             InitializeComponent();
+
+            isEditable = editable;
+            loginForm = form;
+            if (isEditable)
+                richTextBox1.Enabled = true;
+            else
+                richTextBox1.Enabled = false;
+
         }
 
         private void TextEditorForm_Load(object sender, EventArgs e)
@@ -36,6 +43,23 @@ namespace SimpleTextEditor
             AboutBox aboutbox = new AboutBox();
             aboutbox.StartPosition = FormStartPosition.CenterScreen;
             aboutbox.Show();
+        }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //show login form
+            loginForm.Show();
+            Close();
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
