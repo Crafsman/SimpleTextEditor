@@ -25,5 +25,17 @@ namespace SimpleTextEditor
         {
 
         }
+
+        private void oPenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutbox = new AboutBox();
+            aboutbox.StartPosition = FormStartPosition.CenterScreen;
+            aboutbox.Show();
+        }
     }
 }
