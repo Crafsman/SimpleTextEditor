@@ -8,6 +8,8 @@ namespace SimpleTextEditor
 {
     static class Program
     {
+        public static FormsController formsController { get; private set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +18,8 @@ namespace SimpleTextEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            formsController = new FormsController();
+            Application.Run();
         }
     }
 }
