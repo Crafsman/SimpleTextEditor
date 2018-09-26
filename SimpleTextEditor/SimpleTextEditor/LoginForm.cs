@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 
 namespace SimpleTextEditor
 {
     public partial class LoginForm : Form
     {
+        private static string LOGINFILE = "login.txt";
+
         public LoginForm()
         {
             InitializeComponent();
@@ -29,6 +31,57 @@ namespace SimpleTextEditor
             newUser.StartPosition = FormStartPosition.CenterScreen;
             newUser.Show();
             Hide();
+        }
+
+        private void button_login_Click(object sender, EventArgs e)
+        {
+            UserInformationStruct userInfo;
+            userInfo.userType = "edit";
+            //read file into  a collection, 
+            string username = textBox_username.Text;
+            string password = textBox_password.Text;
+
+            bool isMatch = false;
+            string line;
+
+            if (!File.Exists(LOGINFILE))
+                return;
+
+            // Retrieve file to match current input user information  
+            StreamReader file = new System.IO.StreamReader(LOGINFILE);
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] currentUserInfo = line.Split(',');
+                if(username == currentUserInfo[0] && password == currentUserInfo[1])
+                {
+                    userInfo.userType = currentUserInfo[2];
+                    isMatch = true;
+                    break;
+                }               
+
+            }
+
+            if (isMatch)
+            {
+                TextEditorForm textEditor;
+                if (userInfo.userType.ToLower() == "edit")
+                    textEditor = new TextEditorForm(true);
+                else
+                    textEditor = new TextEditorForm(false);
+
+                textEditor.StartPosition = FormStartPosition.CenterScreen;
+                textEditor.Show();
+
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Invalid account or password", "Notice");
+                return;
+            }
+                
+
+
         }
     }
 }

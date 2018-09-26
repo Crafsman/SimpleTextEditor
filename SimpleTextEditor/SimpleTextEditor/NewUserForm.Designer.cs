@@ -52,8 +52,8 @@
             // 
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.04536F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.95464F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.85714F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.14286F));
             this.tableLayoutPanel1.Controls.Add(this.lable_username, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.textBox_username, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
@@ -82,7 +82,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(384, 212);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(371, 212);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -97,9 +97,12 @@
             // 
             // textBox_username
             // 
-            this.textBox_username.Location = new System.Drawing.Point(129, 3);
+            this.textBox_username.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_username.Location = new System.Drawing.Point(162, 3);
             this.textBox_username.Name = "textBox_username";
-            this.textBox_username.Size = new System.Drawing.Size(151, 20);
+            this.textBox_username.Size = new System.Drawing.Size(206, 20);
             this.textBox_username.TabIndex = 4;
             this.textBox_username.Text = "Yang";
             // 
@@ -114,9 +117,12 @@
             // 
             // textBox_password
             // 
-            this.textBox_password.Location = new System.Drawing.Point(129, 29);
+            this.textBox_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_password.Location = new System.Drawing.Point(162, 29);
             this.textBox_password.Name = "textBox_password";
-            this.textBox_password.Size = new System.Drawing.Size(151, 20);
+            this.textBox_password.Size = new System.Drawing.Size(206, 20);
             this.textBox_password.TabIndex = 6;
             this.textBox_password.Text = "123";
             this.textBox_password.UseSystemPasswordChar = true;
@@ -132,9 +138,12 @@
             // 
             // textBox_rePassword
             // 
-            this.textBox_rePassword.Location = new System.Drawing.Point(129, 55);
+            this.textBox_rePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_rePassword.Location = new System.Drawing.Point(162, 55);
             this.textBox_rePassword.Name = "textBox_rePassword";
-            this.textBox_rePassword.Size = new System.Drawing.Size(151, 20);
+            this.textBox_rePassword.Size = new System.Drawing.Size(206, 20);
             this.textBox_rePassword.TabIndex = 8;
             this.textBox_rePassword.Text = "123";
             this.textBox_rePassword.UseSystemPasswordChar = true;
@@ -151,9 +160,12 @@
             // 
             // textBox_lastName
             // 
-            this.textBox_lastName.Location = new System.Drawing.Point(129, 107);
+            this.textBox_lastName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_lastName.Location = new System.Drawing.Point(162, 107);
             this.textBox_lastName.Name = "textBox_lastName";
-            this.textBox_lastName.Size = new System.Drawing.Size(151, 20);
+            this.textBox_lastName.Size = new System.Drawing.Size(206, 20);
             this.textBox_lastName.TabIndex = 12;
             this.textBox_lastName.Text = "Yang";
             // 
@@ -168,9 +180,12 @@
             // 
             // dateTimePicker_DoB
             // 
-            this.dateTimePicker_DoB.Location = new System.Drawing.Point(129, 133);
+            this.dateTimePicker_DoB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker_DoB.Location = new System.Drawing.Point(162, 133);
             this.dateTimePicker_DoB.Name = "dateTimePicker_DoB";
-            this.dateTimePicker_DoB.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker_DoB.Size = new System.Drawing.Size(206, 20);
             this.dateTimePicker_DoB.TabIndex = 14;
             // 
             // label6
@@ -184,20 +199,26 @@
             // 
             // comboBox_userType
             // 
+            this.comboBox_userType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_userType.FormattingEnabled = true;
             this.comboBox_userType.Items.AddRange(new object[] {
             "Edit",
             "View"});
-            this.comboBox_userType.Location = new System.Drawing.Point(129, 159);
+            this.comboBox_userType.Location = new System.Drawing.Point(162, 159);
             this.comboBox_userType.Name = "comboBox_userType";
-            this.comboBox_userType.Size = new System.Drawing.Size(151, 21);
+            this.comboBox_userType.Size = new System.Drawing.Size(206, 21);
             this.comboBox_userType.TabIndex = 16;
             // 
             // textBox_firstName
             // 
-            this.textBox_firstName.Location = new System.Drawing.Point(129, 81);
+            this.textBox_firstName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_firstName.Location = new System.Drawing.Point(162, 81);
             this.textBox_firstName.Name = "textBox_firstName";
-            this.textBox_firstName.Size = new System.Drawing.Size(151, 20);
+            this.textBox_firstName.Size = new System.Drawing.Size(206, 20);
             this.textBox_firstName.TabIndex = 10;
             this.textBox_firstName.Text = "Mingqian";
             // 
@@ -212,7 +233,7 @@
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(129, 186);
+            this.button_cancel.Location = new System.Drawing.Point(162, 186);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(110, 23);
             this.button_cancel.TabIndex = 18;
@@ -235,10 +256,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(384, 290);
+            this.ClientSize = new System.Drawing.Size(371, 234);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "NewUserForm";
             this.Text = "NewUser2";
+            this.Load += new System.EventHandler(this.NewUserForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

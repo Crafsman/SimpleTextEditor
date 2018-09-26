@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace SimpleTextEditor
 {
+    public struct UserInformationStruct
+    {
+        public string userName, password, userType, firstName, lastName, dateOfBirth;
+
+    }
+
+
     public class FormsController
     {
        private LoginForm loginForm; 

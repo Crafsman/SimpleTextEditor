@@ -12,11 +12,7 @@ using System.IO;
 
 namespace SimpleTextEditor
 {
-    public struct UserInformation
-    {
-        public string userName, password, firstName, lastName, dateOfBirth, userType;
 
-    }
 
 
     public partial class NewUserForm : Form
@@ -97,7 +93,7 @@ namespace SimpleTextEditor
         }
         private string ReadInfoFromNewUserForm()
         {
-            UserInformation userInfo;
+            UserInformationStruct userInfo;
             userInfo.userName = textBox_username.Text;
             userInfo.password = textBox_password.Text;
             userInfo.userType = comboBox_userType.Text;
@@ -130,6 +126,11 @@ namespace SimpleTextEditor
             {
                 MessageBox.Show("Password not match", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void NewUserForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
