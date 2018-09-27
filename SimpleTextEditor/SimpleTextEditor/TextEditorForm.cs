@@ -11,12 +11,29 @@ using System.Windows.Forms;
 
 namespace SimpleTextEditor
 {
+    struct FileInfo
+    {
+        public string abosolutPath;
+        public string fileName;  //test.txt
+        public string content;
+        public bool isSaved;
+        public bool IsContentChanged;
+
+        public FileInfo(string abosolutPath, string fileName, string content, bool isSaved)
+        {
+            this.abosolutPath = abosolutPath;
+            this.fileName = fileName;
+            this.content = content;
+            this.isSaved = isSaved;
+            IsContentChanged = false;
+        }
+    }
+
     public partial class TextEditorForm : Form
     {
         bool isEditable;
         private LoginForm loginForm;
-        private string currentFileAbsolutePath = "";
-
+        FileInfo currentFileInfo;
 
         public TextEditorForm(bool editable, LoginForm form)
         {
@@ -29,6 +46,10 @@ namespace SimpleTextEditor
             else
                 richTextBox1.Enabled = false;
 
+            currentFileInfo = new FileInfo("Untitled", "", "", false);
+
+
+            // new file
         }
 
         private void TextEditorForm_Load(object sender, EventArgs e)
@@ -60,8 +81,70 @@ namespace SimpleTextEditor
             Close();
         }
 
+        private bool IsFileChanged()
+        {
+          
+            //currentFileInfo.abosolutPath
+            if (currentFileInfo.content.Trim() == richTextBox1.Text.Trim())
+                return false;
+            return true;
+        }
+
+        private void NewFile()
+        {
+
+            //detect if current file is saved?
+            if (IsFileChanged())
+            {
+
+                string prompt = "Do you want to save changes to " + currentFileInfo.abosolutPath;
+
+                DialogResult result = MessageBox.Show(prompt, "Simple Text Editor", MessageBoxButtons.YesNoCancel);
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        SaveFile();
+                        break;
+                    case DialogResult.No:
+                       
+                        break;
+                    case DialogResult.Cancel:
+                        Console.WriteLine("The color is blue");
+                        break;
+                    default:
+                        Console.WriteLine("The color is unknown.");
+                        break;
+                }
+
+                return;
+            }
+
+            if (currentFileInfo.abosolutPath == "")
+                return;
+
+            if (currentFileInfo.isSaved || !currentFileInfo.IsContentChanged)
+            {
+                //clean the panel
+                richTextBox1.Clear();
+
+                //update current path                
+                currentFileInfo = new FileInfo("Untitled", "", "", false);
+
+                //change title -> "Untitled"
+                this.Text = "Untitled";
+
+                return;
+            }
+
+
+
+
+        }
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            NewFile();
 
         }
 
@@ -71,10 +154,10 @@ namespace SimpleTextEditor
         }
 
         //https://www.c-sharpcorner.com/UploadFile/mahesh/savefiledialog-in-C-Sharp/
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveFile()
         {
             //new SaveFileDialog and show
-            if(currentFileAbsolutePath == "")
+            if (currentFileInfo.fileName == "")
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.Title = "Save text Files";
@@ -85,18 +168,29 @@ namespace SimpleTextEditor
                 {
                     using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
                         sw.WriteLine(richTextBox1.Text);
-                    currentFileAbsolutePath = saveFileDialog1.FileName;
+
+                    currentFileInfo.abosolutPath = saveFileDialog1.FileName;
+                    currentFileInfo.fileName = Path.GetFileName(saveFileDialog1.FileName);
+
 
                     this.Text = Path.GetFileName(saveFileDialog1.FileName);
                 }
             }
             else //save directly
             {
-                using (StreamWriter sw = new StreamWriter(currentFileAbsolutePath))
+                using (StreamWriter sw = new StreamWriter(currentFileInfo.abosolutPath))
                     sw.WriteLine(richTextBox1.Text);
+                currentFileInfo.isSaved = true;
             }
 
+            currentFileInfo.content = richTextBox1.Text;
+            currentFileInfo.IsContentChanged = false;
+        }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            SaveFile();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -115,17 +209,16 @@ namespace SimpleTextEditor
                     //sw.Close();
                 }
                
-                currentFileAbsolutePath = saveFileDialog1.FileName;
+                currentFileInfo.abosolutPath = saveFileDialog1.FileName;
             }
 
-
             //current rich text editor becomes the new name????????
-
             this.Text = Path.GetFileName(saveFileDialog1.FileName);
-
 
         }
 
+
+        //Open file
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             string fileName = null;
@@ -148,8 +241,22 @@ namespace SimpleTextEditor
                 string text = File.ReadAllText(fileName);
                 richTextBox1.Text = text;
 
+                currentFileInfo.abosolutPath = fileName;
                 this.Text = Path.GetFileName(fileName);
+
+
+                currentFileInfo = new FileInfo(fileName, Path.GetFileName(fileName), text, true);
             }
+        }
+
+        private void richTextBox1_ModifiedChanged(object sender, EventArgs e)
+        {
+            bool isChanged = true;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            currentFileInfo.IsContentChanged = true;
         }
     }
 }
