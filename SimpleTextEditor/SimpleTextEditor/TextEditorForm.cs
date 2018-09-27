@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace SimpleTextEditor
     {
         bool isEditable;
         private LoginForm loginForm;
+        private string currentFileAbsolutePath = "";
+
 
         public TextEditorForm(bool editable, LoginForm form)
         {
@@ -59,6 +62,67 @@ namespace SimpleTextEditor
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void toolStripSplitButton_new_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //https://www.c-sharpcorner.com/UploadFile/mahesh/savefiledialog-in-C-Sharp/
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //new SaveFileDialog and show
+            if(currentFileAbsolutePath == "")
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Title = "Save text Files";
+                saveFileDialog1.Filter = "Text files (*.rtf)|*.rtf";
+                saveFileDialog1.DefaultExt = "rtf";
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                        sw.WriteLine(richTextBox1.Text);
+                    currentFileAbsolutePath = saveFileDialog1.FileName;
+
+                    this.Text = Path.GetFileName(saveFileDialog1.FileName);
+                }
+            }
+            else //save directly
+            {
+                using (StreamWriter sw = new StreamWriter(currentFileAbsolutePath))
+                    sw.WriteLine(richTextBox1.Text);
+            }
+
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //always show save as dialog, and update current file path 
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Title = "Save text Files";
+            saveFileDialog1.Filter = "Text files (*.rtf)|*.rtf";
+            saveFileDialog1.DefaultExt = "rtf";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                {
+                    sw.WriteLine(richTextBox1.Text);
+                    //sw.Close();
+                }
+               
+                currentFileAbsolutePath = saveFileDialog1.FileName;
+            }
+
+
+            //current rich text editor becomes the new name????????
+
+            this.Text = Path.GetFileName(saveFileDialog1.FileName);
+
 
         }
     }
