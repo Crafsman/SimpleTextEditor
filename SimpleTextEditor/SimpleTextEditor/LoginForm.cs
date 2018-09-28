@@ -49,7 +49,7 @@ namespace SimpleTextEditor
                 return;
 
             // Retrieve file to match current input user information  
-            StreamReader file = new System.IO.StreamReader(LOGINFILE);
+            StreamReader file = new StreamReader(LOGINFILE);
             while ((line = file.ReadLine()) != null)
             {
                 string[] currentUserInfo = line.Split(',');

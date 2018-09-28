@@ -100,11 +100,10 @@
             this.textBox_username.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_username.Location = new System.Drawing.Point(162, 3);
+            this.textBox_username.Location = new System.Drawing.Point(161, 3);
             this.textBox_username.Name = "textBox_username";
-            this.textBox_username.Size = new System.Drawing.Size(206, 20);
+            this.textBox_username.Size = new System.Drawing.Size(207, 20);
             this.textBox_username.TabIndex = 4;
-            this.textBox_username.Text = "Yang";
             // 
             // label1
             // 
@@ -120,11 +119,10 @@
             this.textBox_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_password.Location = new System.Drawing.Point(162, 29);
+            this.textBox_password.Location = new System.Drawing.Point(161, 29);
             this.textBox_password.Name = "textBox_password";
-            this.textBox_password.Size = new System.Drawing.Size(206, 20);
+            this.textBox_password.Size = new System.Drawing.Size(207, 20);
             this.textBox_password.TabIndex = 6;
-            this.textBox_password.Text = "123";
             this.textBox_password.UseSystemPasswordChar = true;
             // 
             // label2
@@ -141,11 +139,10 @@
             this.textBox_rePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_rePassword.Location = new System.Drawing.Point(162, 55);
+            this.textBox_rePassword.Location = new System.Drawing.Point(161, 55);
             this.textBox_rePassword.Name = "textBox_rePassword";
-            this.textBox_rePassword.Size = new System.Drawing.Size(206, 20);
+            this.textBox_rePassword.Size = new System.Drawing.Size(207, 20);
             this.textBox_rePassword.TabIndex = 8;
-            this.textBox_rePassword.Text = "123";
             this.textBox_rePassword.UseSystemPasswordChar = true;
             this.textBox_rePassword.Leave += new System.EventHandler(this.textBox_rePassword_Leave);
             // 
@@ -163,11 +160,10 @@
             this.textBox_lastName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_lastName.Location = new System.Drawing.Point(162, 107);
+            this.textBox_lastName.Location = new System.Drawing.Point(161, 107);
             this.textBox_lastName.Name = "textBox_lastName";
-            this.textBox_lastName.Size = new System.Drawing.Size(206, 20);
+            this.textBox_lastName.Size = new System.Drawing.Size(207, 20);
             this.textBox_lastName.TabIndex = 12;
-            this.textBox_lastName.Text = "Yang";
             // 
             // label5
             // 
@@ -183,9 +179,9 @@
             this.dateTimePicker_DoB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker_DoB.Location = new System.Drawing.Point(162, 133);
+            this.dateTimePicker_DoB.Location = new System.Drawing.Point(161, 133);
             this.dateTimePicker_DoB.Name = "dateTimePicker_DoB";
-            this.dateTimePicker_DoB.Size = new System.Drawing.Size(206, 20);
+            this.dateTimePicker_DoB.Size = new System.Drawing.Size(207, 20);
             this.dateTimePicker_DoB.TabIndex = 14;
             // 
             // label6
@@ -206,9 +202,9 @@
             this.comboBox_userType.Items.AddRange(new object[] {
             "Edit",
             "View"});
-            this.comboBox_userType.Location = new System.Drawing.Point(162, 159);
+            this.comboBox_userType.Location = new System.Drawing.Point(161, 159);
             this.comboBox_userType.Name = "comboBox_userType";
-            this.comboBox_userType.Size = new System.Drawing.Size(206, 21);
+            this.comboBox_userType.Size = new System.Drawing.Size(207, 21);
             this.comboBox_userType.TabIndex = 16;
             // 
             // textBox_firstName
@@ -216,11 +212,10 @@
             this.textBox_firstName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_firstName.Location = new System.Drawing.Point(162, 81);
+            this.textBox_firstName.Location = new System.Drawing.Point(161, 81);
             this.textBox_firstName.Name = "textBox_firstName";
-            this.textBox_firstName.Size = new System.Drawing.Size(206, 20);
+            this.textBox_firstName.Size = new System.Drawing.Size(207, 20);
             this.textBox_firstName.TabIndex = 10;
-            this.textBox_firstName.Text = "Mingqian";
             // 
             // label3
             // 
@@ -233,7 +228,7 @@
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(162, 186);
+            this.button_cancel.Location = new System.Drawing.Point(161, 186);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(110, 23);
             this.button_cancel.TabIndex = 18;
@@ -259,7 +254,7 @@
             this.ClientSize = new System.Drawing.Size(371, 234);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "NewUserForm";
-            this.Text = "NewUser2";
+            this.Text = "NewUser";
             this.Load += new System.EventHandler(this.NewUserForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

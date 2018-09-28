@@ -68,6 +68,9 @@ namespace SimpleTextEditor
         {
             try
             {
+                if (!CheckUserIsAvailable())
+                    return;
+
                 if (!IsInputValid())
                     return;
 
@@ -84,6 +87,9 @@ namespace SimpleTextEditor
                 }
                 tw.WriteLine(ReadInfoFromNewUserForm());
                 tw.Close();
+
+                //Close();
+                MessageBox.Show("Register successfully");
             }
             catch(IOException ex)
             {
@@ -132,5 +138,31 @@ namespace SimpleTextEditor
         {
 
         }
+
+        private bool CheckUserIsAvailable()
+        {
+            if (!File.Exists(LOGINFILE))
+                return false;
+
+            string username = textBox_username.Text;
+            string line = "";
+            // Retrieve file to match current input user information  
+            StreamReader file = new StreamReader(LOGINFILE);
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] currentUserInfo = line.Split(',');
+                if (username == currentUserInfo[0])
+                {
+                    MessageBox.Show(username + " exists \nPlease change the name");
+                    file.Close();
+                    return false;
+                }
+
+            }
+            file.Close();
+
+            return true;
+        }
+
     }
 }
