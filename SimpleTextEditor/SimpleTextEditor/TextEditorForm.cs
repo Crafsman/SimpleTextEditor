@@ -258,5 +258,45 @@ namespace SimpleTextEditor
         {
             currentFileInfo.IsContentChanged = true;
         }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //cursor position
+            int i = richTextBox1.SelectionStart;
+
+            string selectedText = richTextBox1.SelectedText;
+            richTextBox1.Text = richTextBox1.Text.Remove(richTextBox1.SelectionStart, richTextBox1.SelectionLength);
+
+            Clipboard.SetText(selectedText);
+
+            richTextBox1.SelectionStart = i;
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string selectedText = richTextBox1.SelectedText;
+
+            if (selectedText == "")
+                return;
+
+            Clipboard.SetText(selectedText);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //cursor position
+            int i = richTextBox1.SelectionStart;
+
+            string pastText = Clipboard.GetText();
+            richTextBox1.Text += pastText;
+
+            richTextBox1.SelectionStart = i + pastText.Length;
+
+        }
+
+        private void TextEditorForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm.Show();
+        }
     }
 }
