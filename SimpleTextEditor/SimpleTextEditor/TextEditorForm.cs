@@ -65,9 +65,16 @@ namespace SimpleTextEditor
             isEditable = editable;
             loginForm = form;
             if (isEditable)
+            {
+                editToolStripMenuItem.Enabled = true;
                 richTextBox1.Enabled = true;
+            }
             else
+            {
+                editToolStripMenuItem.Enabled = false;
                 richTextBox1.Enabled = false;
+            }
+               
 
             currentFileInfo = new FileInfo("Untitled", "", "", false);
             fontStatus = new FontStatus();
