@@ -42,7 +42,6 @@ namespace SimpleTextEditor
     }
 
 
-
     public partial class TextEditorForm : Form
     {
         bool isEditable;
@@ -73,6 +72,9 @@ namespace SimpleTextEditor
             currentFileInfo = new FileInfo("Untitled", "", "", false);
             fontStatus = new FontStatus();
 
+
+            //set userNmae
+            toolStrip_userName.Text = "User Name: " + loginForm.UserName;
         }
 
         private void TextEditorForm_Load(object sender, EventArgs e)
@@ -160,15 +162,11 @@ namespace SimpleTextEditor
                 return;
             }
 
-
-
-
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewFile();
-
         }
 
         private void toolStripSplitButton_new_Click(object sender, EventArgs e)
@@ -274,7 +272,6 @@ namespace SimpleTextEditor
 
         private void richTextBox1_ModifiedChanged(object sender, EventArgs e)
         {
-            bool isChanged = true;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -412,7 +409,6 @@ namespace SimpleTextEditor
 
         private void UpdateFontStatus()
         {
-            FontStyle mysty = richTextBox1.SelectionFont.Style;
 
 
             switch (currentBtn)
@@ -420,44 +416,33 @@ namespace SimpleTextEditor
                 case CurrentClickButton.Bold:
                     if (fontStatus.Bold)
                     {
-                        mysty = richTextBox1.SelectionFont.Style;
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Bold);
                     }
                     else
                     {
-                        mysty = richTextBox1.SelectionFont.Style;
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style & ~FontStyle.Bold);
-                        mysty = richTextBox1.SelectionFont.Style;
                     }
                     break;
 
                 case CurrentClickButton.Italic:
                     if (fontStatus.Italic)
                     {
-                        mysty = richTextBox1.SelectionFont.Style;
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Italic);
-                        mysty = richTextBox1.SelectionFont.Style;
                     }
                     else
                     {
-                        mysty = richTextBox1.SelectionFont.Style;
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style & ~FontStyle.Italic);
-                        mysty = richTextBox1.SelectionFont.Style;
                     }
                     break;
 
                 case CurrentClickButton.Underline:
                     if (fontStatus.Underline)
                     {
-                        mysty = richTextBox1.SelectionFont.Style;
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Underline);
-                        mysty = richTextBox1.SelectionFont.Style;
                     }
                     else
                     {
-
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style & ~FontStyle.Underline);
-                        //  mysty = richTextBox1.SelectionFont.Style;
                     }
                     break;
                 default:
@@ -467,14 +452,27 @@ namespace SimpleTextEditor
 
             currentBtn = CurrentClickButton.Regular;
 
-
-            mysty = richTextBox1.SelectionFont.Style;
-
         }
 
         private void toolStripButton_bold_CheckStateChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void toolStripButton_font_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (richTextBox1.SelectionLength <= 0)
+                return;
+
+            Object selectedItem = toolStrip_font.SelectedItem;
+            int fontsize = Convert.ToInt16(selectedItem);
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, fontsize, richTextBox1.SelectionFont.Style);
+
+        }
+
+        private void toolStripButton_font_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

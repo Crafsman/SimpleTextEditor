@@ -14,6 +14,7 @@ namespace SimpleTextEditor
     public partial class LoginForm : Form
     {
         private static string LOGINFILE = "login.txt";
+        public string UserName { set; get; } = string.Empty;
 
         public LoginForm()
         {
@@ -56,6 +57,7 @@ namespace SimpleTextEditor
                 {
                     userInfo.userType = currentUserInfo[2];
                     isMatch = true;
+                    UserName = username;
                     break;
                 }               
 
@@ -79,8 +81,7 @@ namespace SimpleTextEditor
                 MessageBox.Show("Invalid account or password", "Notice");
                 return;
             }
-                
-
+              
 
         }
     }

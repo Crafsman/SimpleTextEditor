@@ -54,11 +54,11 @@
             this.toolStripButton_bold = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_italic = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_underLine = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_font = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStrip_font = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton_question = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton_userName = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip_userName = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -205,11 +205,11 @@
             this.toolStripButton_bold,
             this.toolStripButton_italic,
             this.toolStripButton_underLine,
-            this.toolStripButton_font,
+            this.toolStrip_font,
             this.toolStripButton_question,
             this.toolStripButton10,
             this.toolStripButton11,
-            this.toolStripButton_userName});
+            this.toolStrip_userName});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -310,12 +310,28 @@
             this.toolStripButton_underLine.ToolTipText = "Underline";
             this.toolStripButton_underLine.Click += new System.EventHandler(this.toolStripButton_underLine_Click);
             // 
-            // toolStripButton_font
+            // toolStrip_font
             // 
-            this.toolStripButton_font.Name = "toolStripButton_font";
-            this.toolStripButton_font.Size = new System.Drawing.Size(140, 25);
-            this.toolStripButton_font.Text = "toolStripButton8";
-            this.toolStripButton_font.ToolTipText = "Font size";
+            this.toolStrip_font.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"});
+            this.toolStrip_font.Name = "toolStrip_font";
+            this.toolStrip_font.Size = new System.Drawing.Size(140, 25);
+            this.toolStrip_font.Text = "Font Size";
+            this.toolStrip_font.ToolTipText = "Font size";
+            this.toolStrip_font.SelectedIndexChanged += new System.EventHandler(this.toolStripButton_font_SelectedIndexChanged);
+            this.toolStrip_font.Click += new System.EventHandler(this.toolStripButton_font_Click);
             // 
             // toolStripButton_question
             // 
@@ -340,15 +356,15 @@
             this.toolStripButton11.Size = new System.Drawing.Size(0, 22);
             this.toolStripButton11.Text = "toolStripButton11";
             // 
-            // toolStripButton_userName
+            // toolStrip_userName
             // 
-            this.toolStripButton_userName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton_userName.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_userName.Image")));
-            this.toolStripButton_userName.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_userName.Name = "toolStripButton_userName";
-            this.toolStripButton_userName.Size = new System.Drawing.Size(135, 22);
-            this.toolStripButton_userName.Text = "User Name: HelloWorld";
-            this.toolStripButton_userName.ToolTipText = "User Name";
+            this.toolStrip_userName.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStrip_userName.Image = ((System.Drawing.Image)(resources.GetObject("toolStrip_userName.Image")));
+            this.toolStrip_userName.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStrip_userName.Name = "toolStrip_userName";
+            this.toolStrip_userName.Size = new System.Drawing.Size(131, 22);
+            this.toolStrip_userName.Text = "User Name: HelloWorld";
+            this.toolStrip_userName.ToolTipText = "User Name";
             // 
             // TextEditorForm
             // 
@@ -399,10 +415,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_bold;
         private System.Windows.Forms.ToolStripButton toolStripButton_italic;
         private System.Windows.Forms.ToolStripButton toolStripButton_underLine;
-        private System.Windows.Forms.ToolStripComboBox toolStripButton_font;
+        private System.Windows.Forms.ToolStripComboBox toolStrip_font;
         private System.Windows.Forms.ToolStripButton toolStripButton_question;
         private System.Windows.Forms.ToolStripSeparator toolStripButton10;
         private System.Windows.Forms.ToolStripLabel toolStripButton11;
-        private System.Windows.Forms.ToolStripButton toolStripButton_userName;
+        private System.Windows.Forms.ToolStripLabel toolStrip_userName;
     }
 }
