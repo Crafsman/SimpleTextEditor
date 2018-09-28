@@ -29,11 +29,35 @@ namespace SimpleTextEditor
         }
     }
 
+    struct FontStatus
+    {
+        public bool Regular;
+
+        public bool Bold;
+
+        public bool Italic;
+
+        public bool Underline;
+
+    }
+
+
+
     public partial class TextEditorForm : Form
     {
         bool isEditable;
         private LoginForm loginForm;
         FileInfo currentFileInfo;
+        FontStatus fontStatus;
+        CurrentClickButton currentBtn;
+
+        public enum CurrentClickButton
+        {
+            Regular,
+            Bold,
+            Italic,
+            Underline
+        }
 
         public TextEditorForm(bool editable, LoginForm form)
         {
@@ -47,9 +71,8 @@ namespace SimpleTextEditor
                 richTextBox1.Enabled = false;
 
             currentFileInfo = new FileInfo("Untitled", "", "", false);
+            fontStatus = new FontStatus();
 
-
-            // new file
         }
 
         private void TextEditorForm_Load(object sender, EventArgs e)
@@ -150,7 +173,7 @@ namespace SimpleTextEditor
 
         private void toolStripSplitButton_new_Click(object sender, EventArgs e)
         {
-
+            NewFile();
         }
 
         //https://www.c-sharpcorner.com/UploadFile/mahesh/savefiledialog-in-C-Sharp/
@@ -297,6 +320,161 @@ namespace SimpleTextEditor
         private void TextEditorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             loginForm.Show();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItem1_Click(sender, e);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            SaveFile(); ;
+        }
+
+        private void toolStripButton_saveAs_Click(object sender, EventArgs e)
+        {
+            saveAsToolStripMenuItem_Click(sender, e);
+        }
+
+        private void toolStripButton_bold_Click(object sender, EventArgs e)
+        {
+
+            if (richTextBox1.SelectionLength <= 0)
+                return;
+            currentBtn = CurrentClickButton.Bold;
+
+            if (toolStripButton_bold.Checked)
+            {
+                toolStripButton_bold.Checked = false;
+                fontStatus.Bold = false;
+                
+            }
+            else
+            {
+                toolStripButton_bold.Checked = true;
+                fontStatus.Bold = true;
+               // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Bold);
+            }
+             UpdateFontStatus();
+
+        }
+
+        private void toolStripButton_italic_Click(object sender, EventArgs e)
+        {
+
+
+            if (richTextBox1.SelectionLength <= 0)
+                return;
+            currentBtn = CurrentClickButton.Italic;
+
+            if (toolStripButton_italic.Checked)
+            {
+                toolStripButton_italic.Checked = false;
+                fontStatus.Italic = false;
+              
+            }             
+            else
+            {
+                toolStripButton_italic.Checked = true;
+                fontStatus.Italic = true;
+               // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Italic);
+            }
+
+            UpdateFontStatus();
+        }
+
+        private void toolStripButton_underLine_Click(object sender, EventArgs e)
+        {
+
+
+            if (richTextBox1.SelectionLength <= 0)
+                return;
+
+            currentBtn = CurrentClickButton.Underline;
+
+            if (toolStripButton_underLine.Checked)
+            {
+                toolStripButton_underLine.Checked = false;
+                fontStatus.Underline = false;
+               
+            }          
+            else
+            {
+                toolStripButton_underLine.Checked = true;
+                fontStatus.Underline = true;
+               // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline);
+            }
+            UpdateFontStatus();
+
+
+        }
+
+        private void UpdateFontStatus()
+        {
+            FontStyle mysty = richTextBox1.SelectionFont.Style;
+
+
+            switch (currentBtn)
+            {
+                case CurrentClickButton.Bold:
+                    if (fontStatus.Bold)
+                    {
+                        mysty = richTextBox1.SelectionFont.Style;
+                        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Bold);
+                    }
+                    else
+                    {
+                        mysty = richTextBox1.SelectionFont.Style;
+                        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style & ~FontStyle.Bold);
+                        mysty = richTextBox1.SelectionFont.Style;
+                    }
+                    break;
+
+                case CurrentClickButton.Italic:
+                    if (fontStatus.Italic)
+                    {
+                        mysty = richTextBox1.SelectionFont.Style;
+                        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Italic);
+                        mysty = richTextBox1.SelectionFont.Style;
+                    }
+                    else
+                    {
+                        mysty = richTextBox1.SelectionFont.Style;
+                        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style & ~FontStyle.Italic);
+                        mysty = richTextBox1.SelectionFont.Style;
+                    }
+                    break;
+
+                case CurrentClickButton.Underline:
+                    if (fontStatus.Underline)
+                    {
+                        mysty = richTextBox1.SelectionFont.Style;
+                        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Underline);
+                        mysty = richTextBox1.SelectionFont.Style;
+                    }
+                    else
+                    {
+
+                        richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style & ~FontStyle.Underline);
+                        //  mysty = richTextBox1.SelectionFont.Style;
+                    }
+                    break;
+                default:
+                   
+                    break;
+            }
+
+            currentBtn = CurrentClickButton.Regular;
+
+
+            mysty = richTextBox1.SelectionFont.Style;
+
+        }
+
+        private void toolStripButton_bold_CheckStateChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
