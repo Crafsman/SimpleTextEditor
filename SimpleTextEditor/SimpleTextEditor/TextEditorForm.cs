@@ -74,7 +74,7 @@ namespace SimpleTextEditor
                 editToolStripMenuItem.Enabled = false;
                 richTextBox1.Enabled = false;
             }
-               
+
 
             currentFileInfo = new FileInfo("Untitled", "", "", false);
             fontStatus = new FontStatus();
@@ -115,7 +115,7 @@ namespace SimpleTextEditor
 
         private bool IsFileChanged()
         {
-          
+
             //currentFileInfo.abosolutPath
             if (currentFileInfo.content.Trim() == richTextBox1.Text.Trim())
                 return false;
@@ -139,7 +139,7 @@ namespace SimpleTextEditor
                         SaveFile();
                         break;
                     case DialogResult.No:
-                       
+
                         break;
                     case DialogResult.Cancel:
                         Console.WriteLine("The color is blue");
@@ -236,7 +236,7 @@ namespace SimpleTextEditor
                     sw.WriteLine(richTextBox1.Text);
                     //sw.Close();
                 }
-               
+
                 currentFileInfo.abosolutPath = saveFileDialog1.FileName;
             }
 
@@ -288,6 +288,8 @@ namespace SimpleTextEditor
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            richTextBox1.Cut();
+            /*
             //cursor position
             int i = richTextBox1.SelectionStart;
 
@@ -297,20 +299,25 @@ namespace SimpleTextEditor
             Clipboard.SetText(selectedText);
 
             richTextBox1.SelectionStart = i;
+            */
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            richTextBox1.Copy();
+            /*
             string selectedText = richTextBox1.SelectedText;
 
             if (selectedText == "")
                 return;
 
-            Clipboard.SetText(selectedText);
+            Clipboard.SetText(selectedText);*/
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            richTextBox1.Paste();
+            /*
             //cursor position
             int i = richTextBox1.SelectionStart;
 
@@ -318,7 +325,7 @@ namespace SimpleTextEditor
             richTextBox1.Text += pastText;
 
             richTextBox1.SelectionStart = i + pastText.Length;
-
+            */
         }
 
         private void TextEditorForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -352,15 +359,15 @@ namespace SimpleTextEditor
             {
                 toolStripButton_bold.Checked = false;
                 fontStatus.Bold = false;
-                
+
             }
             else
             {
                 toolStripButton_bold.Checked = true;
                 fontStatus.Bold = true;
-               // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Bold);
+                // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Bold);
             }
-             UpdateFontStatus();
+            UpdateFontStatus();
 
         }
 
@@ -376,13 +383,13 @@ namespace SimpleTextEditor
             {
                 toolStripButton_italic.Checked = false;
                 fontStatus.Italic = false;
-              
-            }             
+
+            }
             else
             {
                 toolStripButton_italic.Checked = true;
                 fontStatus.Italic = true;
-               // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Italic);
+                // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Italic);
             }
 
             UpdateFontStatus();
@@ -401,13 +408,13 @@ namespace SimpleTextEditor
             {
                 toolStripButton_underLine.Checked = false;
                 fontStatus.Underline = false;
-               
-            }          
+
+            }
             else
             {
                 toolStripButton_underLine.Checked = true;
                 fontStatus.Underline = true;
-               // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline);
+                // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline);
             }
             UpdateFontStatus();
 
@@ -453,7 +460,7 @@ namespace SimpleTextEditor
                     }
                     break;
                 default:
-                   
+
                     break;
             }
 
@@ -463,7 +470,7 @@ namespace SimpleTextEditor
 
         private void toolStripButton_bold_CheckStateChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void toolStripButton_font_SelectedIndexChanged(object sender, EventArgs e)
@@ -480,6 +487,26 @@ namespace SimpleTextEditor
         private void toolStripButton_font_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            cutToolStripMenuItem_Click(sender, e);
+        }
+
+        private void toolStripButton_copy_Click(object sender, EventArgs e)
+        {
+            copyToolStripMenuItem_Click(sender, e);
+        }
+
+        private void toolStripButton_paste_Click(object sender, EventArgs e)
+        {
+            pasteToolStripMenuItem_Click(sender, e);
+        }
+
+        private void toolStripButton_question_Click(object sender, EventArgs e)
+        {
+            aboutToolStripMenuItem_Click(sender, e);
         }
     }
 }
