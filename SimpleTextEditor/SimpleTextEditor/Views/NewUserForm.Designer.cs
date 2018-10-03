@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewUserForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lable_username = new System.Windows.Forms.Label();
             this.textBox_username = new System.Windows.Forms.TextBox();
@@ -97,8 +98,8 @@
             // 
             // textBox_username
             // 
-            this.textBox_username.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_username.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_username.Location = new System.Drawing.Point(161, 3);
             this.textBox_username.Name = "textBox_username";
@@ -116,8 +117,8 @@
             // 
             // textBox_password
             // 
-            this.textBox_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_password.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_password.Location = new System.Drawing.Point(161, 29);
             this.textBox_password.Name = "textBox_password";
@@ -136,8 +137,8 @@
             // 
             // textBox_rePassword
             // 
-            this.textBox_rePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_rePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_rePassword.Location = new System.Drawing.Point(161, 55);
             this.textBox_rePassword.Name = "textBox_rePassword";
@@ -157,8 +158,8 @@
             // 
             // textBox_lastName
             // 
-            this.textBox_lastName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_lastName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_lastName.Location = new System.Drawing.Point(161, 107);
             this.textBox_lastName.Name = "textBox_lastName";
@@ -176,8 +177,8 @@
             // 
             // dateTimePicker_DoB
             // 
-            this.dateTimePicker_DoB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dateTimePicker_DoB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker_DoB.Location = new System.Drawing.Point(161, 133);
             this.dateTimePicker_DoB.Name = "dateTimePicker_DoB";
@@ -195,8 +196,8 @@
             // 
             // comboBox_userType
             // 
-            this.comboBox_userType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBox_userType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_userType.FormattingEnabled = true;
             this.comboBox_userType.Items.AddRange(new object[] {
@@ -209,8 +210,8 @@
             // 
             // textBox_firstName
             // 
-            this.textBox_firstName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_firstName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_firstName.Location = new System.Drawing.Point(161, 81);
             this.textBox_firstName.Name = "textBox_firstName";
@@ -253,6 +254,7 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(371, 234);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewUserForm";
             this.Text = "NewUser";
             this.Load += new System.EventHandler(this.NewUserForm_Load);

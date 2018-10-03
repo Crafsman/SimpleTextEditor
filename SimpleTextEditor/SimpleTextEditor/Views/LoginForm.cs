@@ -53,13 +53,13 @@ namespace SimpleTextEditor
             while ((line = file.ReadLine()) != null)
             {
                 string[] currentUserInfo = line.Split(',');
-                if(username == currentUserInfo[0] && password == currentUserInfo[1])
+                if (username == currentUserInfo[0] && password == currentUserInfo[1])
                 {
                     userInfo.userType = currentUserInfo[2];
                     isMatch = true;
                     UserName = username;
                     break;
-                }               
+                }
 
             }
 
@@ -81,8 +81,13 @@ namespace SimpleTextEditor
                 MessageBox.Show("Invalid account or password", "Notice");
                 return;
             }
-              
 
+
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

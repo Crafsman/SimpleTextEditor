@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.lable_username = new System.Windows.Forms.Label();
             this.textBox_username = new System.Windows.Forms.TextBox();
             this.textBox_password = new System.Windows.Forms.TextBox();
@@ -52,6 +53,7 @@
             this.textBox_username.Name = "textBox_username";
             this.textBox_username.Size = new System.Drawing.Size(151, 20);
             this.textBox_username.TabIndex = 1;
+            this.textBox_username.Text = "user2";
             // 
             // textBox_password
             // 
@@ -59,6 +61,7 @@
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(151, 20);
             this.textBox_password.TabIndex = 3;
+            this.textBox_password.Text = "321password";
             this.textBox_password.UseSystemPasswordChar = true;
             // 
             // label1
@@ -112,8 +115,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_username);
             this.Controls.Add(this.lable_username);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

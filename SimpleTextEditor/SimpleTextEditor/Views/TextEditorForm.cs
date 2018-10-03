@@ -29,17 +29,7 @@ namespace SimpleTextEditor
         }
     }
 
-    struct FontStatus
-    {
-        public bool Regular;
 
-        public bool Bold;
-
-        public bool Italic;
-
-        public bool Underline;
-
-    }
 
 
     public partial class TextEditorForm : Form
