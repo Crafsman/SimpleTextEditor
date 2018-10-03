@@ -30,14 +30,13 @@ namespace SimpleTextEditor
     }
 
 
-
-
     public partial class TextEditorForm : Form
     {
         bool isEditable;
         private LoginForm loginForm;
         FileInfo currentFileInfo;
-        FontStatus fontStatus;
+        SelectedFontStatus currentSelectedFontStatus;
+        List<SelectedFontStatus> listSelectedFontStatus = new List<SelectedFontStatus>();
         CurrentClickButton currentBtn;
 
         public enum CurrentClickButton
@@ -65,14 +64,14 @@ namespace SimpleTextEditor
                 richTextBox1.Enabled = false;
             }
 
-
             currentFileInfo = new FileInfo("Untitled", "", "", false);
-            fontStatus = new FontStatus();
-
 
             //set userNmae
             toolStrip_userName.Text = "User Name: " + loginForm.UserName;
+            currentSelectedFontStatus = new SelectedFontStatus();
+            richTextBox1.SelectionChanged += CursorPositionChangedWithoutSelectionText;
         }
+
 
         private void TextEditorForm_Load(object sender, EventArgs e)
         {
@@ -129,7 +128,7 @@ namespace SimpleTextEditor
                         SaveFile();
                         break;
                     case DialogResult.No:
-
+                        richTextBox1.Clear();
                         break;
                     case DialogResult.Cancel:
                         Console.WriteLine("The color is blue");
@@ -230,11 +229,9 @@ namespace SimpleTextEditor
                 currentFileInfo.abosolutPath = saveFileDialog1.FileName;
             }
 
-            //current rich text editor becomes the new name????????
             this.Text = Path.GetFileName(saveFileDialog1.FileName);
 
         }
-
 
         //Open file
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -262,7 +259,6 @@ namespace SimpleTextEditor
                 currentFileInfo.abosolutPath = fileName;
                 this.Text = Path.GetFileName(fileName);
 
-
                 currentFileInfo = new FileInfo(fileName, Path.GetFileName(fileName), text, true);
             }
         }
@@ -279,43 +275,16 @@ namespace SimpleTextEditor
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Cut();
-            /*
-            //cursor position
-            int i = richTextBox1.SelectionStart;
-
-            string selectedText = richTextBox1.SelectedText;
-            richTextBox1.Text = richTextBox1.Text.Remove(richTextBox1.SelectionStart, richTextBox1.SelectionLength);
-
-            Clipboard.SetText(selectedText);
-
-            richTextBox1.SelectionStart = i;
-            */
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Copy();
-            /*
-            string selectedText = richTextBox1.SelectedText;
-
-            if (selectedText == "")
-                return;
-
-            Clipboard.SetText(selectedText);*/
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Paste();
-            /*
-            //cursor position
-            int i = richTextBox1.SelectionStart;
-
-            string pastText = Clipboard.GetText();
-            richTextBox1.Text += pastText;
-
-            richTextBox1.SelectionStart = i + pastText.Length;
-            */
         }
 
         private void TextEditorForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -348,14 +317,13 @@ namespace SimpleTextEditor
             if (toolStripButton_bold.Checked)
             {
                 toolStripButton_bold.Checked = false;
-                fontStatus.Bold = false;
+                currentSelectedFontStatus.Bold = false;
 
             }
             else
             {
                 toolStripButton_bold.Checked = true;
-                fontStatus.Bold = true;
-                // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Bold);
+                currentSelectedFontStatus.Bold = true;
             }
             UpdateFontStatus();
 
@@ -364,7 +332,6 @@ namespace SimpleTextEditor
         private void toolStripButton_italic_Click(object sender, EventArgs e)
         {
 
-
             if (richTextBox1.SelectionLength <= 0)
                 return;
             currentBtn = CurrentClickButton.Italic;
@@ -372,14 +339,13 @@ namespace SimpleTextEditor
             if (toolStripButton_italic.Checked)
             {
                 toolStripButton_italic.Checked = false;
-                fontStatus.Italic = false;
+                currentSelectedFontStatus.Italic = false;
 
             }
             else
             {
                 toolStripButton_italic.Checked = true;
-                fontStatus.Italic = true;
-                // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Italic);
+                currentSelectedFontStatus.Italic = true;
             }
 
             UpdateFontStatus();
@@ -387,7 +353,6 @@ namespace SimpleTextEditor
 
         private void toolStripButton_underLine_Click(object sender, EventArgs e)
         {
-
 
             if (richTextBox1.SelectionLength <= 0)
                 return;
@@ -397,28 +362,23 @@ namespace SimpleTextEditor
             if (toolStripButton_underLine.Checked)
             {
                 toolStripButton_underLine.Checked = false;
-                fontStatus.Underline = false;
+                currentSelectedFontStatus.Underline = false;
 
             }
             else
             {
                 toolStripButton_underLine.Checked = true;
-                fontStatus.Underline = true;
-                // richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, FontStyle.Underline);
+                currentSelectedFontStatus.Underline = true;
             }
             UpdateFontStatus();
-
-
         }
 
         private void UpdateFontStatus()
         {
-
-
             switch (currentBtn)
             {
                 case CurrentClickButton.Bold:
-                    if (fontStatus.Bold)
+                    if (currentSelectedFontStatus.Bold)
                     {
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Bold);
                     }
@@ -429,7 +389,7 @@ namespace SimpleTextEditor
                     break;
 
                 case CurrentClickButton.Italic:
-                    if (fontStatus.Italic)
+                    if (currentSelectedFontStatus.Italic)
                     {
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Italic);
                     }
@@ -440,7 +400,7 @@ namespace SimpleTextEditor
                     break;
 
                 case CurrentClickButton.Underline:
-                    if (fontStatus.Underline)
+                    if (currentSelectedFontStatus.Underline)
                     {
                         richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style | FontStyle.Underline);
                     }
@@ -458,10 +418,6 @@ namespace SimpleTextEditor
 
         }
 
-        private void toolStripButton_bold_CheckStateChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripButton_font_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -498,5 +454,43 @@ namespace SimpleTextEditor
         {
             aboutToolStripMenuItem_Click(sender, e);
         }
+
+        private void CreateItem()
+        {
+            currentSelectedFontStatus = new SelectedFontStatus();
+
+            currentSelectedFontStatus.SelectedString = richTextBox1.SelectedText;
+            currentSelectedFontStatus.StartPosition = richTextBox1.SelectionStart;
+            currentSelectedFontStatus.StringLenth = richTextBox1.SelectionLength;
+            currentSelectedFontStatus.EndPosition = currentSelectedFontStatus.StartPosition + currentSelectedFontStatus.StringLenth;
+
+            listSelectedFontStatus.Add(currentSelectedFontStatus);
+        }
+
+        private void CursorPositionChangedWithoutSelectionText(object sender, EventArgs e)
+        {
+            if (richTextBox1.SelectionLength > 0)
+                return;
+
+            Font myfont = richTextBox1.SelectionFont;
+
+            bool isBold = myfont.Bold;
+            bool isItaic = myfont.Italic;
+            bool isUnderline = myfont.Underline;
+            float fontSize = myfont.Size;
+
+            UpdateUI(isBold, isItaic, isUnderline, fontSize);
+
+        }
+
+        private void UpdateUI(bool isBold, bool isItalic, bool isUnderline, float fontSize)
+        {
+            toolStripButton_bold.Checked = isBold;
+            toolStripButton_italic.Checked = isItalic;
+            toolStripButton_underLine.Checked = isUnderline;
+
+            toolStrip_font.Text = ((int)fontSize).ToString();
+        }
+
     }
 }

@@ -76,7 +76,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(915, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(998, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -217,7 +217,7 @@
             this.toolStrip_userName});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(915, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(998, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -279,7 +279,6 @@
             this.toolStripButton_bold.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton_bold.Text = "toolStripButton5";
             this.toolStripButton_bold.ToolTipText = "Bold";
-            this.toolStripButton_bold.CheckStateChanged += new System.EventHandler(this.toolStripButton_bold_CheckStateChanged);
             this.toolStripButton_bold.Click += new System.EventHandler(this.toolStripButton_bold_Click);
             // 
             // toolStripButton_italic
@@ -370,7 +369,7 @@
             this.toolStripButton_paste});
             this.toolStrip2.Location = new System.Drawing.Point(0, 49);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(24, 441);
+            this.toolStrip2.Size = new System.Drawing.Size(24, 539);
             this.toolStrip2.TabIndex = 3;
             this.toolStrip2.Text = "toolStrip_leftside";
             // 
@@ -407,9 +406,10 @@
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(24, 49);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(891, 441);
+            this.richTextBox1.Size = new System.Drawing.Size(974, 539);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
@@ -417,7 +417,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(915, 490);
+            this.ClientSize = new System.Drawing.Size(998, 588);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);

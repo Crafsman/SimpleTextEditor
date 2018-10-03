@@ -51,7 +51,7 @@
     <Compile Include="Views\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="FontStatus.cs" />
+    <Compile Include="SelectedFontStatus.cs" />
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
