@@ -178,17 +178,16 @@ namespace SimpleTextEditor
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 saveFileDialog1.Title = "Save text Files";
-                saveFileDialog1.Filter = "Text files (*.rtf)|*.rtf";
+                saveFileDialog1.Filter = "RTF  files (*.rtf)|*.rtf";
                 saveFileDialog1.DefaultExt = "rtf";
 
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK && saveFileDialog1.FileName.Length > 0)
                 {
-                    using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
-                        sw.WriteLine(richTextBox1.Text);
+                    // Save the contents of the RichTextBox into the file.
+                    richTextBox1.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.RichText);
 
                     currentFileInfo.abosolutPath = saveFileDialog1.FileName;
                     currentFileInfo.fileName = Path.GetFileName(saveFileDialog1.FileName);
-
 
                     this.Text = Path.GetFileName(saveFileDialog1.FileName);
                 }
@@ -244,7 +243,7 @@ namespace SimpleTextEditor
                 openFileDialog1.FilterIndex = 2;
                 openFileDialog1.RestoreDirectory = true;
 
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                if (openFileDialog1.ShowDialog() == DialogResult.OK && openFileDialog1.FileName.Length > 0)
                 {
                     fileName = openFileDialog1.FileName;
                 }
@@ -254,7 +253,9 @@ namespace SimpleTextEditor
             {
                 //Do something with the file, for example read text from it
                 string text = File.ReadAllText(fileName);
-                richTextBox1.Text = text;
+
+                // Load the contents of the file into the RichTextBox.
+                richTextBox1.LoadFile(fileName, RichTextBoxStreamType.RichText);
 
                 currentFileInfo.abosolutPath = fileName;
                 this.Text = Path.GetFileName(fileName);
