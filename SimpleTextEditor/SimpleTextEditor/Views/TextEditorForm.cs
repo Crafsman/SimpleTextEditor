@@ -32,11 +32,9 @@ namespace SimpleTextEditor
 
     public partial class TextEditorForm : Form
     {
-        bool isEditable;
         private LoginForm loginForm;
         FileInfo currentFileInfo;
         SelectedFontStatus currentSelectedFontStatus;
-        List<SelectedFontStatus> listSelectedFontStatus = new List<SelectedFontStatus>();
         CurrentClickButton currentBtn;
 
         public enum CurrentClickButton
@@ -51,9 +49,8 @@ namespace SimpleTextEditor
         {
             InitializeComponent();
 
-            isEditable = editable;
             loginForm = form;
-            if (isEditable)
+            if (editable)
             {
                 editToolStripMenuItem.Enabled = true;
                 richTextBox1.Enabled = true;
@@ -65,22 +62,12 @@ namespace SimpleTextEditor
             }
 
             currentFileInfo = new FileInfo("Untitled", "", "", false);
+            currentSelectedFontStatus = new SelectedFontStatus();
 
             //set userNmae
             toolStrip_userName.Text = "User Name: " + loginForm.UserName;
-            currentSelectedFontStatus = new SelectedFontStatus();
-            richTextBox1.SelectionChanged += CursorPositionChangedWithoutSelectionText;
-        }
 
-
-        private void TextEditorForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void oPenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            richTextBox1.SelectionChanged += OnSelectionChanged;
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,11 +75,6 @@ namespace SimpleTextEditor
             AboutBox aboutbox = new AboutBox();
             aboutbox.StartPosition = FormStartPosition.CenterScreen;
             aboutbox.Show();
-        }
-
-        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
-        {
-
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,7 +86,6 @@ namespace SimpleTextEditor
 
         private bool IsFileChanged()
         {
-
             //currentFileInfo.abosolutPath
             if (currentFileInfo.content.Trim() == richTextBox1.Text.Trim())
                 return false;
@@ -194,8 +175,9 @@ namespace SimpleTextEditor
             }
             else //save directly
             {
-                using (StreamWriter sw = new StreamWriter(currentFileInfo.abosolutPath))
-                    sw.WriteLine(richTextBox1.Text);
+                // Save the contents of the RichTextBox into the file.
+                richTextBox1.SaveFile(currentFileInfo.abosolutPath, RichTextBoxStreamType.RichText);
+
                 currentFileInfo.isSaved = true;
             }
 
@@ -205,7 +187,6 @@ namespace SimpleTextEditor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             SaveFile();
         }
 
@@ -264,10 +245,6 @@ namespace SimpleTextEditor
             }
         }
 
-        private void richTextBox1_ModifiedChanged(object sender, EventArgs e)
-        {
-        }
-
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             currentFileInfo.IsContentChanged = true;
@@ -310,7 +287,6 @@ namespace SimpleTextEditor
 
         private void toolStripButton_bold_Click(object sender, EventArgs e)
         {
-
             if (richTextBox1.SelectionLength <= 0)
                 return;
             currentBtn = CurrentClickButton.Bold;
@@ -319,7 +295,6 @@ namespace SimpleTextEditor
             {
                 toolStripButton_bold.Checked = false;
                 currentSelectedFontStatus.Bold = false;
-
             }
             else
             {
@@ -419,7 +394,6 @@ namespace SimpleTextEditor
 
         }
 
-
         private void toolStripButton_font_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionLength <= 0)
@@ -428,11 +402,6 @@ namespace SimpleTextEditor
             Object selectedItem = toolStrip_font.SelectedItem;
             int fontsize = Convert.ToInt16(selectedItem);
             richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, fontsize, richTextBox1.SelectionFont.Style);
-
-        }
-
-        private void toolStripButton_font_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -456,19 +425,8 @@ namespace SimpleTextEditor
             aboutToolStripMenuItem_Click(sender, e);
         }
 
-        private void CreateItem()
-        {
-            currentSelectedFontStatus = new SelectedFontStatus();
-
-            currentSelectedFontStatus.SelectedString = richTextBox1.SelectedText;
-            currentSelectedFontStatus.StartPosition = richTextBox1.SelectionStart;
-            currentSelectedFontStatus.StringLenth = richTextBox1.SelectionLength;
-            currentSelectedFontStatus.EndPosition = currentSelectedFontStatus.StartPosition + currentSelectedFontStatus.StringLenth;
-
-            listSelectedFontStatus.Add(currentSelectedFontStatus);
-        }
-
-        private void CursorPositionChangedWithoutSelectionText(object sender, EventArgs e)
+        //Update Bold, Italic, Underline buttons, when cursor Position changed
+        private void OnSelectionChanged(object sender, EventArgs e)
         {
             if (richTextBox1.SelectionLength > 0)
                 return;
@@ -481,7 +439,6 @@ namespace SimpleTextEditor
             float fontSize = myfont.Size;
 
             UpdateUI(isBold, isItaic, isUnderline, fontSize);
-
         }
 
         private void UpdateUI(bool isBold, bool isItalic, bool isUnderline, float fontSize)

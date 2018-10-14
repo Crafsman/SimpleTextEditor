@@ -81,8 +81,6 @@ namespace SimpleTextEditor
                 MessageBox.Show("Invalid account or password", "Notice");
                 return;
             }
-
-
         }
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)

@@ -324,7 +324,6 @@
             this.toolStrip_font.Text = "Font Size";
             this.toolStrip_font.ToolTipText = "Font size";
             this.toolStrip_font.SelectedIndexChanged += new System.EventHandler(this.toolStripButton_font_SelectedIndexChanged);
-            this.toolStrip_font.Click += new System.EventHandler(this.toolStripButton_font_Click);
             // 
             // toolStripButton_question
             // 
@@ -427,7 +426,6 @@
             this.Name = "TextEditorForm";
             this.Text = "TextEditor";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TextEditorForm_FormClosed);
-            this.Load += new System.EventHandler(this.TextEditorForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
